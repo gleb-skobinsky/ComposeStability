@@ -5,17 +5,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,16 +28,12 @@ data class ComponentState(
     val callbackHandler: CallbackHandler = CallbackHandler(),
 )
 
-class SyntheticViewModel {
+class SyntheticViewModel : ViewModel() {
     private val _state = MutableStateFlow(ComponentState())
     val state = _state.asStateFlow()
 
-    private val scope = CoroutineScope(
-        Dispatchers.Main.immediate + SupervisorJob()
-    )
-
     init {
-        scope.launch {
+        viewModelScope.launch {
             while (isActive) {
                 delay(1.seconds)
                 _state.update {
@@ -49,23 +42,13 @@ class SyntheticViewModel {
             }
         }
     }
-
-    fun cancelScope() {
-        scope.cancel()
-    }
 }
 
 @Composable
 fun ParentWithOneChild2() {
-    val viewModel = remember { SyntheticViewModel() }
+    val viewModel: SyntheticViewModel = viewModel()
     val state by viewModel.state.collectAsState()
     Child(state)
-
-    DisposableEffect(viewModel) {
-        onDispose {
-            viewModel.cancelScope()
-        }
-    }
 }
 
 @Composable
