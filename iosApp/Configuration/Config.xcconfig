@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=ComposeStability
+PRODUCT_BUNDLE_IDENTIFIER=com.example.composestability.ComposeStability$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
