@@ -1,6 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import kotlin.io.path.Path
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -17,7 +18,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,12 +29,12 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     jvm("desktop")
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -100,4 +101,16 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+composeCompiler {
+    val buildFile = project.layout.buildDirectory
+        .get().asFile.absolutePath
+
+    metricsDestination.set(
+        Path(buildFile, "composeMetrics5").toFile()
+    )
+    reportsDestination.set(
+        Path(buildFile, "composeReports5").toFile()
+    )
 }
