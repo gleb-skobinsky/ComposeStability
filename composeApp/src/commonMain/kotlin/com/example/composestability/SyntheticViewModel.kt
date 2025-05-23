@@ -23,17 +23,5 @@ class SyntheticViewModel : ViewModel() {
                 }
             }
         }
-        /*
-        viewModelScope.launch {
-            delay(5.seconds)
-            _state.update {
-                it.copy(
-                    orderData = it.orderData.toMutableList().apply {
-                        add(OrderData())
-                    }
-                )
-            }
-        }
-         */
     }
 }

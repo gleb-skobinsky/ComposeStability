@@ -16,9 +16,9 @@ fun GrandChild(
     unstableParam: CallbackHandler,
     unstableParam2: List<OrderData>,
     unstableParam3: OrderData,
-    unstableLambda: (ComponentState) -> Unit,
-    unstableLambda2: (ComponentState) -> Unit,
-    unstableLambda3: (ComponentState) -> Unit
+    lambda: (ComponentState) -> Unit,
+    lambda2: (ComponentState) -> Unit,
+    lambda3: (ComponentState) -> Unit
 ) {
     Column(
         Modifier
@@ -30,8 +30,8 @@ fun GrandChild(
         Text(unstableParam.toString())
         Text(unstableParam2.toString())
         Text(unstableParam3.toString())
-        Text(unstableLambda.toString())
-        Text(unstableLambda2.toString())
-        Text(unstableLambda3.toString())
+        Text(lambda.toString())
+        Text(lambda2.toString())
+        Text(lambda3.toString())
     }
 }

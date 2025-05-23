@@ -113,4 +113,7 @@ composeCompiler {
     reportsDestination.set(
         Path(buildFile, "composeReports5").toFile()
     )
+//    featureFlags.set(
+//        listOf(ComposeFeatureFlag.StrongSkipping.disabled())
+//    )
 }

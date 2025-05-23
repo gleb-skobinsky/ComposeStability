@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun Child(
     state: ComponentState,
-    unstableLambda: (ComponentState) -> Unit
+    lambda: (ComponentState) -> Unit
 ) {
     Text(state.timerCounter.toString())
 
@@ -15,12 +15,12 @@ fun Child(
         unstableParam = state.callbackHandler,
         unstableParam2 = state.orderData,
         unstableParam3 = state.singleOrder,
-        unstableLambda = unstableLambda,
-        unstableLambda2 = {
+        lambda = lambda,
+        lambda2 = {
             println(it.label)
         },
-        unstableLambda3 = {
-            println(state.label)
+        lambda3 = {
+            //println(state.label)
         }
     )
 }

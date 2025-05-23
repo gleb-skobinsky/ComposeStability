@@ -74,8 +74,11 @@ private fun GrandChild(
 }
 
 class CallbackHandler {
-    fun onCallback() {
+    var handler: () -> Unit = {
         println("Callback triggered")
+    }
+    fun onCallback() {
+        handler()
     }
 }
 
