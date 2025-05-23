@@ -77,11 +77,6 @@ class CallbackHandler {
     fun onCallback() {
         println("Callback triggered")
     }
-
-    override fun toString(): String {
-        return "Some CallbackHandler"
-    }
-
 }
 
 data class OrderData(
