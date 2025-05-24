@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun ParentWithOneChild2() {
     val viewModel: SyntheticViewModel = viewModel()
     val state by viewModel.state.collectAsState()
-    Child(state) {
+    Child(state, viewModel.orderData) {
         println(state.label)
     }
 }

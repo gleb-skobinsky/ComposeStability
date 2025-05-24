@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import kotlin.io.path.Path
@@ -113,7 +114,7 @@ composeCompiler {
     reportsDestination.set(
         Path(buildFile, "composeReports5").toFile()
     )
-//    featureFlags.set(
-//        listOf(ComposeFeatureFlag.StrongSkipping.disabled())
-//    )
+    featureFlags.set(
+        listOf(ComposeFeatureFlag.StrongSkipping.disabled())
+    )
 }
