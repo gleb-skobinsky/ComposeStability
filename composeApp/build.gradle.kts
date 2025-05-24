@@ -109,10 +109,10 @@ composeCompiler {
         .get().asFile.absolutePath
 
     metricsDestination.set(
-        Path(buildFile, "composeMetrics5").toFile()
+        Path(buildFile, "composeMetrics").toFile()
     )
     reportsDestination.set(
-        Path(buildFile, "composeReports5").toFile()
+        Path(buildFile, "composeReports").toFile()
     )
 //    featureFlags.set(
 //        listOf(ComposeFeatureFlag.StrongSkipping.disabled())
